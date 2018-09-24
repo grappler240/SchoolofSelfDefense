@@ -15,7 +15,7 @@ CREATE TABLE Instructor (
 
 
 CREATE TABLE State (
-                StateId CHAR(1) NOT NULL,
+                StateId CHAR(2) NOT NULL,
                 StateName VARCHAR(30) NOT NULL,
                 PRIMARY KEY (StateId)
 );
@@ -36,7 +36,7 @@ CREATE TABLE Student (
                 FirstName VARCHAR(50) NOT NULL,
                 StudentAddress VARCHAR(100) NOT NULL,
                 CityName VARCHAR(50) NOT NULL,
-                StateId CHAR(1) NOT NULL,
+                StateId CHAR(2) NOT NULL,
                 ZipCode VARCHAR(5) NOT NULL,
                 TechniqueId INT NOT NULL,
                 ContractStatus BOOLEAN NOT NULL,
