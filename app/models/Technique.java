@@ -4,14 +4,14 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class technique
+public class Technique
 {
     @Id
     private int techniqueId;
     private String techniqueName;
     private String beltLevel;
 
-    public technique(int techniqueId, String techniqueName, String beltLevel)
+    public Technique(int techniqueId, String techniqueName, String beltLevel)
     {
         this.techniqueId = techniqueId;
         this.techniqueName = techniqueName;

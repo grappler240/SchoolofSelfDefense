@@ -4,12 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class instructor
+public class Instructor
 {
     @Id private int instructorId;
     private String instructorName;
 
-    public instructor(int instructorId, String instructorName)
+    public Instructor(int instructorId, String instructorName)
     {
         this.instructorId = instructorId;
         this.instructorName = instructorName;
@@ -34,5 +34,4 @@ public class instructor
     {
         this.instructorName = instructorName;
     }
-
 }

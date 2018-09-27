@@ -31,6 +31,11 @@ public class MainController extends Controller
         return ok(views.html.mainpage.render());
     }
 
+    @Transactional
+    public Result getStoreFront()
+    {
+        return ok(views.html.storefront.render());
+    }
 
 
 

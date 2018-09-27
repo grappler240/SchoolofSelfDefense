@@ -4,7 +4,15 @@
 
 # An example controller showing a sample home page
 GET     /                           controllers.HomeController.index
-GET     /mainpage                   controllers.MainController.getMainPage
+
+GET     /studentdetail              controllers.StudentController.getStudentDetails
+GET     /searchbyname               controllers.StudentController.searchByName
+GET     /searchinstructor           controllers.StudentController.searchByInstructor
+GET     /storefront                 controllers.MainController.getStoreFront
+GET     /studentdetail              controllers.UserController.getUserName
+GET     /editstudent/:studentId     controllers.StudentController.getEditStudent(studentId: Integer)
+GET     /liststudents               controllers.StudentController.listStudents
+
 
 # An example controller showing how to use dependency injection
 GET     /count                      controllers.CountController.count

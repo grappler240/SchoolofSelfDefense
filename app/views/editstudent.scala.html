@@ -1,0 +1,60 @@
+@(student :Student)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Current Student</title>
+</head>
+<link rel="stylesheet" href="assets/lib/bootstrap/css/bootstrap.min.css">
+<script src="assets/lib/jquery/jquery.min.js"></script>
+<script src="assets/lib/bootstrap/js/bootstrap.min.js"></script>
+<body>
+<div class="container-fluid">
+
+    <form method = "POST">
+        @helper.CSRF.formField
+        <h1>Edit Current Students</h1>
+
+        <label for="lastname">Last Name: </label>
+        <input type = "text" class="form-control" id = "lastname" name = "lastname" value = "@student.getLastName"><br>
+        <label for="firstname">First Name: </label>
+        <input type = "text" class="form-control" id = "firstname" name = "firstname" value = "@student.getFirstName"><br>
+        <label for="studentaddress">Last Name: </label>
+        <input type = "text" class="form-control" id = "studentaddress" name = "studentaddress" value = "@student.getStudentAddress"><br>
+        <label for="cityname">First Name: </label>
+        <input type = "text" class="form-control" id = "cityname" name = "cityname" value = "@student.getCityName"><br>
+        <label for="stateId">Last Name: </label>
+        <input type = "text" class="form-control" id = "stateId" name = "stateId" value = "@student.getStateId"><br>
+        <label for="zipcode">First Name: </label>
+        <input type = "text" class="form-control" id = "zipcode" name = "zipcode" value = "@student.getZipCode"><br>
+        <label for="phonenumber">Last Name: </label>
+        <input type = "text" class="form-control" id = "phonenumber" name = "phonenumber" value = "@student.getPhoneNumber"><br>
+        <label for="beltrank">First Name: </label>
+        <input type = "text" class="form-control" id = "beltrank" name = "beltrank" value = "@student.getBeltRank"><br>
+        <label for="techniqueId">Last Name: </label>
+        <input type = "text" class="form-control" id = "techniqueId" name = "techniqueId" value = "@student.getTechniqueId"><br>
+        <label for="contractstatus">First Name: </label>
+        <input type = "text" class="form-control" id = "contractstatus" name = "contractstatus" value = "@student.isContractStatus"><br>
+        <label for="rate">Last Name: </label>
+        <input type = "text" class="form-control" id = "rate" name = "rate" value = "@student.getRate"><br>
+        <label for="instructorId">First Name: </label>
+        <input type = "text" class="form-control" id = "instructorId" name = "instructorId" value = "@student.getInstructorId"><br>
+        <label for="paymentfrequency">Last Name: </label>
+        <input type = "text" class="form-control" id = "paymentfrequency" name = "paymentfrequency" value = "@student.getPaymentFrequencyId"><br>
+        <label for="startdate">First Name: </label>
+        <input type = "text" class="form-control" id = "startdate" name = "startdate" value = "@student.getStartDate"><br>
+
+
+
+        <input type="submit" class="form-control btn-primary bg-danger" value = "Save"><br>
+
+    </form>
+    <hr>
+    @*
+    <a href="/editstudent/@nextStudentId" class="btn btn-secondary bg-danger">Next   </a><br>
+    <a href="/editstudent/@previousStudentId" class="btn btn-secondary bg-danger ">Previous</a>
+    *@
+
+
+</body>
+</html>

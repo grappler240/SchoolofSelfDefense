@@ -2,10 +2,11 @@ package models;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
-public class student
+public class Student
 {
     @Id
     private int studentId;
@@ -20,21 +21,40 @@ public class student
     private int instructorId;
     private String paymentFrequencyId;
     private Date startDate;
+    private String phoneNumber;
+    private BigDecimal rate;
+    private String beltRank;
 
-    public student(int studentId, String lastName, String firstName, String studentAddress, String cityName, String stateId, String zipCode, int techniqueId, boolean contractStatus, int instructorId, String paymentFrequencyId, Date startDate)
+
+
+    public String getPhoneNumber()
     {
-        this.studentId = studentId;
-        this.lastName = lastName;
-        this.firstName = firstName;
-        this.studentAddress = studentAddress;
-        this.cityName = cityName;
-        this.stateId = stateId;
-        this.zipCode = zipCode;
-        this.techniqueId = techniqueId;
-        this.contractStatus = contractStatus;
-        this.instructorId = instructorId;
-        this.paymentFrequencyId = paymentFrequencyId;
-        this.startDate = startDate;
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber)
+    {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public BigDecimal getRate()
+    {
+        return rate;
+    }
+
+    public void setRate(BigDecimal rate)
+    {
+        this.rate = rate;
+    }
+
+    public String getBeltRank()
+    {
+        return beltRank;
+    }
+
+    public void setBeltRank(String beltRank)
+    {
+        this.beltRank = beltRank;
     }
 
     public int getStudentId()

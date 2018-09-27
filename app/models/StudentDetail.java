@@ -2,10 +2,11 @@ package models;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
-public class studentdetail
+public class StudentDetail
 {
     @Id private int studentId;
     private String lastName;
@@ -19,8 +20,15 @@ public class studentdetail
     private int instructorId;
     private String paymentFrequencyId;
     private Date startDate;
+    private String stateName;
+    private String instructorName;
+    private String phoneNumber;
+    private BigDecimal rate;
+    private String beltRank;
 
-    public studentdetail(int studentId, String lastName, String firstName, String studentAddress, String cityName, String stateId, String zipCode, int techniqueId, boolean contractStatus, int instructorId, String paymentFrequencyId, Date startDate)
+
+
+    public StudentDetail(String lastName, String firstName, String studentAddress, String cityName, String stateName, String zipCode, String phoneNumber, String beltRank, String InstructorName, int techniqueId, boolean contractStatus, BigDecimal rate, Date startDate)
     {
         this.studentId = studentId;
         this.lastName = lastName;
@@ -34,8 +42,66 @@ public class studentdetail
         this.instructorId = instructorId;
         this.paymentFrequencyId = paymentFrequencyId;
         this.startDate = startDate;
+        this.stateName = stateName;
+        this.instructorName = instructorName;
+        this.phoneNumber = phoneNumber;
+        this.rate = rate;
+        this.beltRank = beltRank;
     }
 
+
+
+
+
+    public String getBeltRank()
+    {
+        return beltRank;
+    }
+
+    public void setBeltRank(String beltRank)
+    {
+        this.beltRank = beltRank;
+    }
+
+    public String getPhoneNumber()
+    {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber)
+    {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public BigDecimal getRate()
+    {
+        return rate;
+    }
+
+    public void setRate(BigDecimal rate)
+    {
+        this.rate = rate;
+    }
+
+    public String getStateName()
+    {
+        return stateName;
+    }
+
+    public void setStateName(String stateName)
+    {
+        this.stateName = stateName;
+    }
+
+    public String getInstructorName()
+    {
+        return instructorName;
+    }
+
+    public void setInstructorName(String instructorName)
+    {
+        this.instructorName = instructorName;
+    }
 
     public int getStudentId()
     {

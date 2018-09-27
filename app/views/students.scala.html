@@ -1,4 +1,4 @@
-@(students : List[SearchStudents])
+@(students : List[Student])
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,10 +9,10 @@
 <script src="assets/lib/jquery/jquery.min.js"></script>
 <script src="assets/lib/bootstrap/js/bootstrap.min.js"></script>
 <body>
-<body class="bg-dark"><h1 class="text-danger text-center">The Student Information Portal</h1>
+<body class="bg-dark"><h1 class="text-center text-Danger">The Student Information Portal</h1><hr>
 <table class="table table-striped table-bordered text-white bg-dark">
     <tr>
-        <th >Last Name</th><th>First Name</th><th>Address</th><th>City</th><th>State</th><th>ZipCode</th><th>Phone number</th><th>Belt Rank</th><th>Technique</th><th>ContractStatus</th><th>Rate</th><th>Instructor Name</th><th>Payment</th><th>StartDate</th>
+        <th >Last Name</th><th>First Name</th><th>Address</th><th>City</th><th>ZipCode</th><th>Phone number</th><th>Belt Rank</th><th>Technique</th><th>ContractStatus</th><th>Rate</th><th>Payment Frequency</th><th>StartDate</th>
     </tr>
     @for(student <- students) {
     <tr>
@@ -20,20 +20,20 @@
         <td>@student.getFirstName</td>
         <td>@student.getStudentAddress</td>
         <td>@student.getCityName</td>
-        <td>@student.getStateName</td>
+
         <td>@student.getZipCode</td>
         <td>@student.getPhoneNumber</td>
         <td>@student.getBeltRank</td>
         <td>@student.getTechniqueId</td>
         <td>@student.isContractStatus</td>
         <td>@student.getRate</td>
-        <td>@student.getInstructorName</td>
+
         <td>@student.getPaymentFrequencyId</td>
         <td>@student.getStartDate</td>
-    </tr>
 
-    <a href="/studentdetail" class="btn btn-secondary bg-danger">Go Back  </a>
+    </tr><br>
 
 }
 </body>
+<a href="/studentdetail" class="btn btn-secondary bg-danger ">Go Back  </a>
 </html>

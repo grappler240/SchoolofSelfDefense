@@ -1,0 +1,56 @@
+@(students : List[Student])
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Current Students</title>
+</head>
+<link rel="stylesheet" href="assets/lib/bootstrap/css/bootstrap.min.css">
+<script src="assets/lib/jquery/jquery.min.js"></script>
+<script src="assets/lib/bootstrap/js/bootstrap.min.js"></script>
+<body class="bg-dark">
+
+<h1 class="text-danger text-center ">Current Students</h1>
+
+<table class="table table-striped table-bordered text-white">
+    <tr>
+        <th>Last Name</th>
+        <th>First Name</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>State Id</th>
+        <th>Zip Code</th>
+        <th>Phone Number</th>
+        <th>Belt Rank</th>
+        <th>Technique Id</th>
+        <th>Contract Status</th>
+        <th>Rate</th>
+        <th>Instructor Id</th>
+        <th>Payment Method</th>
+        <th>Start Date</th>
+    </tr>
+    @for(student<-students){
+    <tr>
+        <td><a href="/editstudent/@student.getStudentId">@student.getLastName</a></td>
+        <td>@student.getFirstName</td>
+        <td>@student.getStudentAddress</td>
+        <td>@student.getCityName</td>
+        <td>@student.getStateId</td>
+        <td>@student.getZipCode</td>
+        <td>@student.getPhoneNumber</td>
+        <td>@student.getBeltRank</td>
+        <td>@student.getTechniqueId</td>
+        <td>@student.isContractStatus</td>
+        <td>@student.getRate</td>
+        <td>@student.getInstructorId</td>
+        <td>@student.getPaymentFrequencyId</td>
+        <td>@student.getStartDate</td>
+    </tr>
+    }
+</table>
+
+
+
+</body>
+<a href="/studentdetail" class="btn btn-secondary bg-danger">Go Back  </a>
+</html>

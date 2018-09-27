@@ -7,23 +7,47 @@
     <script src="assets/lib/jquery/jquery.min.js"></script>
     <script src="assets/lib/bootstrap/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body class="bg-dark">
 <div class="container-fluid">
 <h1 class="text-center text-danger" >Welcome to the Stephens' School of Self Defense Management Portal</h1>
 <h2 class="text-center text-danger" >Over 20 years teaching the Tracy System of Kenpo Karate!</h2><hr>
 </div>
-<label for = "searchlastname">Search Students by last name:</label>
-<form>
+<label for = "searchlastname" class="text-danger">Search Students by last name:</label>
+<form method="GET" action="/searchbyname">
     <input id= "searchlastname" type = "text" name = "searchlastname">
     <input type="submit" value="search"><br>
 </form>
 <br>
-    <label for = "searchinstructor">Search Students by Instructor:</label><br>
-    <form>
-        <input id= "searchinstructor" type = "text" name = "searchinstructor">
+    <label for = "searchinstructor" class="text-danger">Search Students by Instructor:</label><br>
+    <form method="get" action="/searchinstructor">
+        <input id= "searchinstructor" type = "text" name = "searchInstructor">
         <input type="submit" value="search"><br>
         <br>
     </form>
+
+<form>
+    @helper.CSRF.formField
+
+    <a id="liststudents" name="liststudents"  type = "submit" class="btn btn-secondary bg-danger" href="/liststudents">List or Revise Students</a>
+    <br>
+
+</form>
+
+
+<form>
+@helper.CSRF.formField
+
+<input type = "submit" class="btn btn-secondary bg-danger" value="Add New Student">
+
+</form>
+
+
+
+
+
+<a href="/storefront" class="btn btn-secondary bg-danger">  Go Back  </a>
+<div class="text-center">
+<img src="assets/images/kungfupose.jpg" width="480">
 
 
 

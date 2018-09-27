@@ -4,12 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class state
+public class State
 {
     @Id private String stateId;
     private String stateName;
 
-    public state(String stateId, String stateName)
+    public State(String stateId, String stateName)
     {
         this.stateId = stateId;
         this.stateName = stateName;

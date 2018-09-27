@@ -4,12 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class paymentfrequency
+public class PaymentFrequency
 {
     @Id private String paymentFrequencyId;
     private String paymentFrequencyName;
 
-    public paymentfrequency(String paymentFrequencyId, String paymentFrequencyName)
+    public PaymentFrequency(String paymentFrequencyId, String paymentFrequencyName)
     {
         this.paymentFrequencyId = paymentFrequencyId;
         this.paymentFrequencyName = paymentFrequencyName;
