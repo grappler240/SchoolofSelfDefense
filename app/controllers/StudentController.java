@@ -1,9 +1,7 @@
 package controllers;
 
-import models.SearchStudents;
-import models.Student;
-import models.StudentDetail;
-import models.StudentId;
+import com.amazonaws.services.dynamodbv2.xspec.S;
+import models.*;
 import play.data.DynamicForm;
 import play.data.FormFactory;
 import play.db.jpa.JPAApi;
@@ -21,6 +19,7 @@ public class StudentController extends Controller
 {
     private FormFactory formFactory;
     private JPAApi jpaApi;
+
 
 
     @Inject
@@ -113,6 +112,9 @@ public class StudentController extends Controller
         String SQL = "SELECT s FROM Student s WHERE studentId = :studentId";
         Student editstudent = jpaApi.em().createQuery(SQL, Student.class).setParameter("studentId", studentId).getSingleResult();
 
+        String stateSQL = "SELECT s FROM State s ";
+        List<State> states = jpaApi.em().createQuery(stateSQL, State.class).getResultList();
+
         String nextStudentIdSQL = "SELECT NEW models.StudentId(MIN(studentId)) FROM Student s WHERE studentId>:studentId";
         StudentId nextStudentId = jpaApi.em().createQuery(nextStudentIdSQL, StudentId.class).setParameter("studentId", studentId).getSingleResult();
 
@@ -135,7 +137,7 @@ public class StudentController extends Controller
         }
 
 
-        return ok(views.html.editstudent.render(editstudent, nextStudentId.getId(), previousStudentId.getId()));
+        return ok(views.html.editstudent.render(editstudent, nextStudentId.getId(), previousStudentId.getId(), states));
 
 
     }
@@ -191,7 +193,7 @@ public class StudentController extends Controller
     }
 
     @Transactional
-    public Result postNewstudent()
+    public Result postNewStudent()
     {
         DynamicForm form = formFactory.form().bindFromRequest();
 
@@ -225,14 +227,24 @@ public class StudentController extends Controller
         newstudent.setRate(rate);
         newstudent.setInstructorId(InstructorId);
         newstudent.setPaymentFrequencyId(paymentFrequencyId);
-        newstudent.getStartDate();
+        newstudent.setStartDate(startDate);
 
         jpaApi.em().persist(newstudent);
         result = "saved";
-        return ok(result);
+        return redirect("/liststudents");
     }
 
+    @Transactional
+    public Result deleteStudent(int studentId)
+    {
+        String deleteSQL = "SELECT s FROM Student s where studentId = :studentId";
 
+        Student deleteStudent = jpaApi.em().createQuery(deleteSQL, Student.class).setParameter("studentId", studentId).getSingleResult();
+
+        jpaApi.em().remove(deleteStudent);
+
+        return redirect("/liststudents");
+    }
 
 
 }

@@ -15,6 +15,14 @@ GET     /liststudents               controllers.StudentController.listStudents
 
 POST    /editstudent/:studentId     controllers.StudentController.postEditStudent(studentId: Integer)
 
+GET     /newstudent                 controllers.StudentController.getNewStudent
+POST    /newstudent                 controllers.StudentController.postNewStudent
+POST    /deletestudent/:studentId   controllers.StudentController.deleteStudent(studentId: Integer)
+
+
+
+
+
 
 # An example controller showing how to use dependency injection
 GET     /count                      controllers.CountController.count

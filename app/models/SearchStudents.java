@@ -3,6 +3,7 @@ package models;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -22,11 +23,11 @@ public class SearchStudents
     private int techniqueId;
     private boolean contractStatus;
     private BigDecimal rate;
-    private Date startDate;
+    private LocalDate startDate;
 
                        //          String,          String,               String,        String,               String,           String,             String,            String,               String,        int,                      int, boolean, java.math.BigDecimal, java.time.LocalDate
 
-    public SearchStudents(String lastName, String firstName, String studentAddress, String cityName  , String stateName, String zipCode  , String phoneNumber, String beltRank  , String instructorName  , int paymentFrequencyId, int techniqueId, boolean contractStatus, BigDecimal rate, Date startDate)
+    public SearchStudents(String lastName, String firstName, String studentAddress, String cityName  , String stateName, String zipCode  , String phoneNumber, String beltRank  , String instructorName  , int paymentFrequencyId, int techniqueId, boolean contractStatus, BigDecimal rate, LocalDate startDate)
     {
         this.lastName = lastName;
         this.firstName = firstName;
@@ -174,12 +175,12 @@ public class SearchStudents
         this.rate = rate;
     }
 
-    public Date getStartDate()
+    public LocalDate getStartDate()
     {
         return startDate;
     }
 
-    public void setStartDate(Date startDate)
+    public void setStartDate(LocalDate startDate)
     {
         this.startDate = startDate;
     }
