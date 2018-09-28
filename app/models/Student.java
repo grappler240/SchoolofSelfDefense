@@ -3,6 +3,7 @@ package models;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -19,8 +20,8 @@ public class Student
     private int techniqueId;
     private boolean contractStatus;
     private int instructorId;
-    private String paymentFrequencyId;
-    private Date startDate;
+    private int paymentFrequencyId;
+    private LocalDate startDate;
     private String phoneNumber;
     private BigDecimal rate;
     private String beltRank;
@@ -157,22 +158,22 @@ public class Student
         this.instructorId = instructorId;
     }
 
-    public String getPaymentFrequencyId()
+    public int getPaymentFrequencyId()
     {
         return paymentFrequencyId;
     }
 
-    public void setPaymentFrequencyId(String paymentFrequencyId)
+    public void setPaymentFrequencyId(int paymentFrequencyId)
     {
         this.paymentFrequencyId = paymentFrequencyId;
     }
 
-    public Date getStartDate()
+    public LocalDate getStartDate()
     {
         return startDate;
     }
 
-    public void setStartDate(Date startDate)
+    public void setStartDate(LocalDate startDate)
     {
         this.startDate = startDate;
     }

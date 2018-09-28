@@ -3,55 +3,56 @@ package models;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
-public class SearchStudents
+public class NewStudent
 {
     @Id
+    private int studentId;
     private String lastName;
     private String firstName;
     private String studentAddress;
     private String cityName;
-    private String stateName;
+    private String stateId;
     private String zipCode;
     private String phoneNumber;
     private String beltRank;
-    private String instructorName;
-    private int paymentFrequencyId;
     private int techniqueId;
     private boolean contractStatus;
     private BigDecimal rate;
-    private Date startDate;
+    private int instructorId;
+    private int paymentFrequencyId;
+    private LocalDate startDate;
 
-                       //          String,          String,               String,        String,               String,           String,             String,            String,               String,        int,                      int, boolean, java.math.BigDecimal, java.time.LocalDate
 
-    public SearchStudents(String lastName, String firstName, String studentAddress, String cityName  , String stateName, String zipCode  , String phoneNumber, String beltRank  , String instructorName  , int paymentFrequencyId, int techniqueId, boolean contractStatus, BigDecimal rate, Date startDate)
+    public NewStudent(int studentId, String lastName, String firstName, String studentAddress, String cityName, String stateId, String zipCode, String phoneNumber, String beltRank, int techniqueId, boolean contractStatus, BigDecimal rate, int instructorId, int paymentFrequencyId, LocalDate startDate)
     {
+        this.studentId = studentId;
         this.lastName = lastName;
         this.firstName = firstName;
         this.studentAddress = studentAddress;
         this.cityName = cityName;
-        this.stateName = stateName;
+        this.stateId = stateId;
         this.zipCode = zipCode;
         this.phoneNumber = phoneNumber;
         this.beltRank = beltRank;
-        this.instructorName = instructorName;
-        this.paymentFrequencyId = paymentFrequencyId;
         this.techniqueId = techniqueId;
         this.contractStatus = contractStatus;
         this.rate = rate;
+        this.instructorId = instructorId;
+        this.paymentFrequencyId = paymentFrequencyId;
         this.startDate = startDate;
     }
 
-    public int getPaymentFrequencyId()
+    public int getStudentId()
     {
-        return paymentFrequencyId;
+        return studentId;
     }
 
-    public void setPaymentFrequencyId(int paymentFrequencyId)
+    public void setStudentId(int studentId)
     {
-        this.paymentFrequencyId = paymentFrequencyId;
+        this.studentId = studentId;
     }
 
     public String getLastName()
@@ -94,14 +95,14 @@ public class SearchStudents
         this.cityName = cityName;
     }
 
-    public String getStateName()
+    public String getStateId()
     {
-        return stateName;
+        return stateId;
     }
 
-    public void setStateName(String stateName)
+    public void setStateId(String stateId)
     {
-        this.stateName = stateName;
+        this.stateId = stateId;
     }
 
     public String getZipCode()
@@ -134,16 +135,6 @@ public class SearchStudents
         this.beltRank = beltRank;
     }
 
-    public String getInstructorName()
-    {
-        return instructorName;
-    }
-
-    public void setInstructorName(String instructorName)
-    {
-        this.instructorName = instructorName;
-    }
-
     public int getTechniqueId()
     {
         return techniqueId;
@@ -174,12 +165,32 @@ public class SearchStudents
         this.rate = rate;
     }
 
-    public Date getStartDate()
+    public int getInstructorId()
+    {
+        return instructorId;
+    }
+
+    public void setInstructorId(int instructorId)
+    {
+        this.instructorId = instructorId;
+    }
+
+    public int getPaymentFrequencyId()
+    {
+        return paymentFrequencyId;
+    }
+
+    public void setPaymentFrequencyId(int paymentFrequencyId)
+    {
+        this.paymentFrequencyId = paymentFrequencyId;
+    }
+
+    public LocalDate getStartDate()
     {
         return startDate;
     }
 
-    public void setStartDate(Date startDate)
+    public void setStartDate(LocalDate startDate)
     {
         this.startDate = startDate;
     }

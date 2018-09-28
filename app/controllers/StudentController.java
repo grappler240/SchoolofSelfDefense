@@ -12,6 +12,9 @@ import play.mvc.Controller;
 import play.mvc.Result;
 
 import javax.inject.Inject;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 public class StudentController extends Controller
@@ -46,8 +49,8 @@ public class StudentController extends Controller
     {
         DynamicForm form = formFactory.form().bindFromRequest();
         String lastname = form.get("searchlastname");
-
-        String SQL = "SELECT NEW models.StudentDetail (s.lastName, s. firstName, s.studentAddress, s.cityName, l.stateName, s.zipCode, s.phoneNumber, s.beltRank, i.instructorName, s.techniqueId, s.contractStatus, s.rate, s.startDate) " +
+        //                                                  String,      String,         String,       String,     String,      String,     String,        String,         String,           int,              int,          boolean,   java.math.BigDecimal, java.time.LocalDate
+        String SQL = "SELECT NEW models.SearchStudents (s.lastName, s. firstName, s.studentAddress, s.cityName, l.stateName, s.zipCode, s.phoneNumber, s.beltRank, i.instructorName,s.paymentFrequencyId, s.techniqueId, s.contractStatus, s.rate, s.startDate) " +
                 " FROM Student s JOIN Instructor i ON i.instructorId=s.instructorId " +
                 " JOIN State l ON l.stateId = s.stateId " +
                 "WHERE lastname = :lastname";
@@ -132,8 +135,104 @@ public class StudentController extends Controller
         }
 
 
-        return ok(views.html.editstudent.render(student, nextStudentId.getId(), previousStudentId.getId()));
+        return ok(views.html.editstudent.render(editstudent, nextStudentId.getId(), previousStudentId.getId()));
 
 
     }
+    @Transactional
+    public Result postEditStudent(int studentId)
+    {
+
+        String studentSQL = "SELECT s FROM Student s WHERE studentId = :studentId";
+        Student student = jpaApi.em().createQuery(studentSQL, Student.class).setParameter("studentId", studentId).getSingleResult();
+
+        DynamicForm form = formFactory.form().bindFromRequest();
+        String lastName = form.get("lastname");
+        String firstName = form.get("firstname");
+        String studentAddress = form.get("studentaddress");
+        String cityName = form.get("cityname");
+        String stateId = form.get("stateId");
+        String zipCode = form.get("zipcode");
+        String phoneNumber = form.get("phonenumber");
+        String beltRank = form.get("beltrank");
+        int techniqueId = Integer.parseInt(form.get("techniqueId"));
+        Boolean contractStatus = new Boolean (form.get("contractstatus"));
+        BigDecimal rate = new BigDecimal(form.get("rate"));
+        int InstructorId = Integer.parseInt(form.get("instructorId"));
+        int paymentFrequencyId = Integer.parseInt(form.get("paymentfrequencyId"));
+        LocalDate startDate = LocalDate.parse(form.get("startdate"));
+
+
+
+        student.setLastName(lastName);
+        student.setFirstName(firstName);
+        student.setStudentAddress(studentAddress);
+        student.setCityName(cityName);
+        student.setStateId(stateId);
+        student.setZipCode(zipCode);
+        student.setPhoneNumber(phoneNumber);
+        student.setBeltRank(beltRank);
+        student.setTechniqueId(techniqueId);
+        student.setContractStatus(contractStatus);
+        student.setRate(rate);
+        student.setInstructorId(InstructorId);
+        student.setPaymentFrequencyId(paymentFrequencyId);
+        student.setStartDate(startDate);
+
+
+        return redirect("/editstudent/" + studentId);
+
+
+    }
+    public Result getNewStudent ()
+    {
+        return ok(views.html.newstudent.render());
+
+    }
+
+    @Transactional
+    public Result postNewstudent()
+    {
+        DynamicForm form = formFactory.form().bindFromRequest();
+
+        String lastName = form.get("lastname");
+        String firstName = form.get("firstname");
+        String studentAddress = form.get("studentaddress");
+        String cityName = form.get("cityname");
+        String stateId = form.get("stateId");
+        String zipCode = form.get("zipcode");
+        String phoneNumber = form.get("phonenumber");
+        String beltRank = form.get("beltrank");
+        int techniqueId = Integer.parseInt(form.get("techniqueId"));
+        Boolean contractStatus = new Boolean (form.get("contractstatus"));
+        BigDecimal rate = new BigDecimal(form.get("rate"));
+        int InstructorId = Integer.parseInt(form.get("instructorId"));
+        int paymentFrequencyId = Integer.parseInt(form.get("paymentfrequencyId"));
+        LocalDate startDate = LocalDate.parse(form.get("startdate"));
+        String result = new String();
+
+        Student newstudent = new Student();
+        newstudent.setLastName(lastName);
+        newstudent.setFirstName(firstName);
+        newstudent.setStudentAddress(studentAddress);
+        newstudent.setCityName(cityName);
+        newstudent.setStateId(stateId);
+        newstudent.setZipCode(zipCode);
+        newstudent.setPhoneNumber(phoneNumber);
+        newstudent.setBeltRank(beltRank);
+        newstudent.setTechniqueId(techniqueId);
+        newstudent.setContractStatus(contractStatus);
+        newstudent.setRate(rate);
+        newstudent.setInstructorId(InstructorId);
+        newstudent.setPaymentFrequencyId(paymentFrequencyId);
+        newstudent.getStartDate();
+
+        jpaApi.em().persist(newstudent);
+        result = "saved";
+        return ok(result);
+    }
+
+
+
+
 }
