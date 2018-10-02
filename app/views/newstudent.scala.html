@@ -1,3 +1,4 @@
+@(states: List[State], instructors: List[Instructor], payments: List[PaymentFrequency])
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,10 +13,11 @@
 <body class="bg-dark">
 <form method = "POST">
     @helper.CSRF.formField
-<h1 class="text-center text-danger">Add New Student</h1>
+<h1 class="text-center text-danger font-weight-bold">Add New Student</h1><hr class="bg-danger">
 
 
-
+<div class="row">
+    <div class="col-4">
 <label for="lastname" class="text-danger">Last Name: </label>
 <input type = "text" class="form-control" id = "lastname" name = "lastname" placeholder="type last name"><br>
 <label for="firstname" class="text-danger">First Name: </label>
@@ -24,32 +26,59 @@
 <input type = "text" class="form-control" id = "studentaddress" name = "studentaddress" placeholder="type address"><br>
 <label for="cityname" class="text-danger">City: </label>
 <input type = "text" class="form-control" id = "cityname" name = "cityname" placeholder="type city"><br>
-<label for="stateId" class="text-danger">State Id: </label>
-<input type = "text" class="form-control" id = "stateId" name = "stateId" placeholder="type State Id"><br>
+    </div>
+    <div class="col-4">
+<label for="stateId" class="text-danger">State Name: </label><br>
+        <select name = "stateId" class="form-control">
+            @for(state<-states) {
+            <option id = "stateId"  value="@state.getStateId">@state.getStateName</option>
+            }
+        </select> <br>
+
 <label for="zipcode" class="text-danger">Zip Code: </label>
 <input type = "text" class="form-control" id = "zipcode" name = "zipcode" placeholder="type zip code"><br>
 <label for="phonenumber" class="text-danger">Phone: </label>
 <input type = "text" class="form-control" id = "phonenumber" name = "phonenumber" placeholder="type phone number"><br>
 <label for="beltrank" class="text-danger">Belt Rank: </label>
 <input type = "text" class="form-control" id = "beltrank" name = "beltrank" placeholder="enter belt rank"><br>
+
 <label for="techniqueId" class="text-danger">Technique Id: </label>
-<input type = "text" class="form-control" id = "techniqueId" name = "techniqueId" placeholder="enter technique Id"><br>
+<input type = "number" class="form-control" id = "techniqueId" name = "techniqueId" placeholder="enter technique Id"><br>
+    </div>
+    <div class="col-4">
 <label for="contractstatus" class="text-danger">Contract: </label>
 <input type = "text" class="form-control" id = "contractstatus" name = "contractstatus" placeholder="enter contract status"><br>
 <label for="rate" class="text-danger">Rate: </label>
 <input type = "text" class="form-control" id = "rate" name = "rate" placeholder="rate"><br>
-<label for="instructorId" class="text-danger">Instructor Id: </label>
-<input type = "text" class="form-control" id = "instructorId" name = "instructorId" placeholder="enter instructor Id"><br>
-<label for="paymentfrequencyId" class="text-danger">Payment freq: </label>
-<input type = "text" class="form-control" id = "paymentfrequencyId" name = "paymentfrequencyId" placeholder="enter payment frequency"><br>
+<label for="instructorId" class="text-danger">Instructor Name: </label><br>
+        <select name = "instructorId"  class="form-control">
+            @for(instructor<-instructors) {
+            <option id = "instructorId"  value="@instructor.getInstructorId" selected="selected">@instructor.getInstructorName</option>
+
+            }
+        </select> <br>
+
+<label for="paymentfrequencyId" class="text-danger">Payment frequency: </label>
+        <select name = "paymentfrequencyId"  class="form-control">
+            @for(paymentfrequency<-payments) {
+            <option id = "paymentfrequencyId"  value="@paymentfrequency.getPaymentFrequencyId">@paymentfrequency.getPaymentFrequencyName</option>
+            }
+        </select><br>
+
 <label for="startdate" class="text-danger">Start Date: </label>
-<input type = "text" class="form-control" id = "startdate" name = "startdate" placeholder="enter start date"><br>
+<input type = "date" class="form-control" id = "startdate" name = "startdate">
+        </div>
+</div><hr class="bg-danger">
 
-
+<div class="row">
+    <div class="col-3">
 
 <input type="submit" class="form-control btn-primary bg-danger" value = "Save"><br>
 
     <a href="/studentdetail" class="form-control btn btn-secondary bg-danger">Go Back  </a>
+    </div>
+    <div class="col-9 text-center"><img src="/assets/images/pngdragon.png" width="300"></div>
+</div>
 
 
 </form>

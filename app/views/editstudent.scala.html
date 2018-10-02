@@ -1,4 +1,4 @@
-@(student :Student, nextStudentId: Integer, previousStudentId: Integer, states: List[State])
+@(student :Student, nextStudentId: Integer, previousStudentId: Integer, states: List[State], techniques: List[Technique], instructors: List[Instructor], payments: List[PaymentFrequency])
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,8 +15,9 @@
 
     <form method = "POST">
         @helper.CSRF.formField
-        <h1 class="text-danger text-center">Edit Current Students</h1>
-
+        <h1 class="text-danger text-center font-weight-bold">Edit Current Students</h1><hr class="bg-danger">
+        <div class="row">
+            <div class="col-4">
         <label for="lastname" class="text-danger">Last Name: </label>
         <input type = "text" class="form-control" id = "lastname" name = "lastname" value = "@student.getLastName"><br>
         <label for="firstname" class="text-danger">First Name: </label>
@@ -26,11 +27,14 @@
         <label for="cityname" class="text-danger">City: </label>
         <input type = "text" class="form-control" id = "cityname" name = "cityname" value = "@student.getCityName"><br>
         <label for="stateId" class="text-danger">State: </label>
-        <select>
+        <select name = "stateId"  class="form-control">
             @for(state<-states) {
-            <option id = "stateId" name = "stateId" value="@state.getStateId">@state.getStateName</option>
+            <option id = "stateId"  value="@state.getStateId">@state.getStateName</option>
             }
         </select> <br>
+            </div>
+            <div class="col-4">
+
         <label for="zipcode" class="text-danger">Zip Code: </label>
         <input type = "text" class="form-control" id = "zipcode" name = "zipcode" value = "@student.getZipCode"><br>
         <label for="phonenumber" class="text-danger">Phone: </label>
@@ -38,36 +42,67 @@
         <label for="beltrank" class="text-danger">Belt Rank: </label>
         <input type = "text" class="form-control" id = "beltrank" name = "beltrank" value = "@student.getBeltRank"><br>
         <label for="techniqueId" class="text-danger">Technique Id: </label>
-        <input type = "text" class="form-control" id = "techniqueId" name = "techniqueId" value = "@student.getTechniqueId"><br>
+        <select name = "techniqueId"  class="form-control">
+            @for(technique<-techniques) {
+            @if(technique.getTechniqueId  == student.getTechniqueId){
+            <option id = "techniqueId"  value="@technique.getTechniqueId" selected="selected">@technique.getTechniqueName</option>
+            }else{
+            <option value="@technique.getTechniqueId">@technique.getTechniqueName</option>
+            }
+            }
+        </select> <br>
+            </div>
+            <div class="col-4">
         <label for="contractstatus" class="text-danger">Contract: </label>
         <input type = "text" class="form-control" id = "contractstatus" name = "contractstatus" value = "@student.isContractStatus"><br>
         <label for="rate" class="text-danger">Rate: </label>
         <input type = "text" class="form-control" id = "rate" name = "rate" value = "@student.getRate"><br>
         <label for="instructorId" class="text-danger">Instructor Id: </label>
-        <input type = "text" class="form-control" id = "instructorId" name = "instructorId" value = "@student.getInstructorId"><br>
+        <select name = "instructorId"  class="form-control">
+            @for(instructor<-instructors) {
+            @if(instructor.getInstructorId == student.getInstructorId){
+            <option id = "instructorId"  value="@instructor.getInstructorId" selected="selected">@instructor.getInstructorName</option>
+            }else{
+            <option value="@instructor.getInstructorId">@instructor.getInstructorName</option>
+            }
+            }
+        </select> <br>
+
         <label for="paymentfrequencyId" class="text-danger">Payment freq: </label>
-        <input type = "text" class="form-control" id = "paymentfrequencyId" name = "paymentfrequencyId" value = "@student.getPaymentFrequencyId"><br>
-        <label for="startdate" class="text-danger">Start Date: </label>
+        <select name = "paymentfrequencyId"  class="form-control">
+            @for(paymentfrequency<-payments) {
+            <option id = "paymentfrequencyId"  value="@paymentfrequency.getPaymentFrequencyId">@paymentfrequency.getPaymentFrequencyName</option>
+            }
+        </select><br>
+
+        <label for="startdate" class="text-danger ">Start Date:</label><br>
         <input type = "date" class="form-control" id = "startdate" name = "startdate" value = "@student.getStartDate"><br>
-
-
-
+        </select>
+            </div>
+        </div>
+        <div class="row">
+        <div class="col-3">
         <input type="submit" class="form-control btn-primary bg-danger" value = "Save"><br>
+        </div>
 
+        </div>
     </form>
-    <hr>
-
+    <hr class="bg-danger">
+    <div class="row">
+        <div class="col-3">
     <a href="/editstudent/@nextStudentId" class="btn btn-primary bg-danger">Next   </a><br>
     <a href="/editstudent/@previousStudentId" class="btn btn-primary bg-danger ">Previous</a><br>
 
-    <a href="/studentdetail" class="form-control btn btn-secondary bg-danger">Go Back  </a>
+    <a href="/liststudents" class="form-control btn btn-secondary bg-danger">Go Back  </a>
     <form method="POST" action="/deletestudent/@student.getStudentId">
 
         @helper.CSRF.formField
-        <input type="submit" class="form-control btn-primary bg-danger" value = "Delete Student Record">
+        <input type="submit" class="form-control btn-secondary bg-danger" value = "Delete Student Record">
     </form>
+        </div><hr class="bg-danger font-weight-bold" >
 
-
+        <div class="col-9 text-center"><img src="/assets/images/pngdragon.png" width="300"></div>
+    </div>
 </div>
 </body>
 </html>

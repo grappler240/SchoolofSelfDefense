@@ -9,19 +9,22 @@
 </head>
 <body class="bg-dark">
 <div class="container-fluid">
-<h1 class="text-center text-danger" >Welcome to the Stephens' School of Self Defense Management Portal</h1>
-<h2 class="text-center text-danger" >Over 20 years teaching the Tracy System of Kenpo Karate!</h2><hr>
+<h2 class="text-center text-danger font-weight-bold" >Welcome to the Stephens' School of Self Defense Business Portal</h2>
+    <h2 class="text-center text-danger">Powered by KENPOTech!!!&reg;</h2>
+<h2 class="text-center text-danger" >Over 20 years teaching the Tracy System <img src="/assets/images/smallT.png" width="40">&reg; of Kenpo Karate!</h2><hr class="bg-danger">
 </div>
+<div class="row">
+    <div class="col-4">
 <label for = "searchlastname" class="text-danger">Search Students by last name:</label>
 <form method="GET" action="/searchbyname">
     <input id= "searchlastname" type = "text" name = "searchlastname">
-    <input type="submit" value="search"><br>
+    <input type="submit" class="btn btn-secondary bg-danger" value="search"><br>
 </form>
 <br>
     <label for = "searchinstructor" class="text-danger">Search Students by Instructor:</label><br>
     <form method="get" action="/searchinstructor">
         <input id= "searchinstructor" type = "text" name = "searchInstructor">
-        <input type="submit" value="search"><br>
+        <input type="submit" class="btn btn-secondary bg-danger" value="search"><br>
         <br>
     </form>
 
@@ -40,17 +43,33 @@
 
     <a id="addnewstudents" name="addnewstudents"  type = "submit" class="btn btn-secondary bg-danger" href="/newstudent">Add New Students</a>
 </form>
+        <form>
+            @helper.CSRF.formField
+
+            <a id="listtechniques" name="listtechniques"  type = "submit" class="btn btn-secondary bg-danger" href="/listtechniques">List of Techniques</a>
+            <br>
+
+        </form>
 
 
 
 
-
-<a href="/storefront" class="btn btn-secondary bg-danger">  Go Back  </a>
+<a href="/storefront" class="btn btn-secondary bg-danger">  Login Page  </a>
+    </div>
+    <div class="col-8">
 <div class="text-center">
-<img src="assets/images/kungfupose.jpg" width="480">
 
+<img class="rounded-circle" src="assets/images/kungfupose.jpg" width="480">
 
-
+</div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <h3>     </h3><br>
+<div class="text-center"><img src="/assets/images/promoslider.jpg"></div>
+    </div>
+</div>
 
 
 

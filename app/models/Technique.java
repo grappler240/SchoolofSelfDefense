@@ -11,12 +11,7 @@ public class Technique
     private String techniqueName;
     private String beltLevel;
 
-    public Technique(int techniqueId, String techniqueName, String beltLevel)
-    {
-        this.techniqueId = techniqueId;
-        this.techniqueName = techniqueName;
-        this.beltLevel = beltLevel;
-    }
+
 
     public int getTechniqueId()
     {

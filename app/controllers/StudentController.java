@@ -115,6 +115,16 @@ public class StudentController extends Controller
         String stateSQL = "SELECT s FROM State s ";
         List<State> states = jpaApi.em().createQuery(stateSQL, State.class).getResultList();
 
+        String techniqueSQL = "SELECT t FROM Technique t";
+        List<Technique> techniques = jpaApi.em().createQuery(techniqueSQL,Technique.class).getResultList();
+
+        String instructorSQL = "SELECT i FROM Instructor i";
+        List<Instructor> instructors = jpaApi.em().createQuery(instructorSQL,Instructor.class).getResultList();
+
+        String paymentfrequencySQL = "SELECT p FROM PaymentFrequency p";
+        List<PaymentFrequency> payments = jpaApi.em().createQuery(paymentfrequencySQL,PaymentFrequency.class).getResultList();
+
+
         String nextStudentIdSQL = "SELECT NEW models.StudentId(MIN(studentId)) FROM Student s WHERE studentId>:studentId";
         StudentId nextStudentId = jpaApi.em().createQuery(nextStudentIdSQL, StudentId.class).setParameter("studentId", studentId).getSingleResult();
 
@@ -137,7 +147,7 @@ public class StudentController extends Controller
         }
 
 
-        return ok(views.html.editstudent.render(editstudent, nextStudentId.getId(), previousStudentId.getId(), states));
+        return ok(views.html.editstudent.render(editstudent, nextStudentId.getId(), previousStudentId.getId(), states, techniques, instructors, payments));
 
 
     }
@@ -147,6 +157,8 @@ public class StudentController extends Controller
 
         String studentSQL = "SELECT s FROM Student s WHERE studentId = :studentId";
         Student student = jpaApi.em().createQuery(studentSQL, Student.class).setParameter("studentId", studentId).getSingleResult();
+
+
 
         DynamicForm form = formFactory.form().bindFromRequest();
         String lastName = form.get("lastname");
@@ -160,7 +172,7 @@ public class StudentController extends Controller
         int techniqueId = Integer.parseInt(form.get("techniqueId"));
         Boolean contractStatus = new Boolean (form.get("contractstatus"));
         BigDecimal rate = new BigDecimal(form.get("rate"));
-        int InstructorId = Integer.parseInt(form.get("instructorId"));
+        int instructorId = Integer.parseInt(form.get("instructorId"));
         int paymentFrequencyId = Integer.parseInt(form.get("paymentfrequencyId"));
         LocalDate startDate = LocalDate.parse(form.get("startdate"));
 
@@ -177,7 +189,7 @@ public class StudentController extends Controller
         student.setTechniqueId(techniqueId);
         student.setContractStatus(contractStatus);
         student.setRate(rate);
-        student.setInstructorId(InstructorId);
+        student.setInstructorId(instructorId);
         student.setPaymentFrequencyId(paymentFrequencyId);
         student.setStartDate(startDate);
 
@@ -186,9 +198,19 @@ public class StudentController extends Controller
 
 
     }
+    @Transactional
     public Result getNewStudent ()
     {
-        return ok(views.html.newstudent.render());
+        String stateSQL = "SELECT s FROM State s ";
+        List<State> states = jpaApi.em().createQuery(stateSQL, State.class).getResultList();
+
+        String instructorSQL = "SELECT i FROM Instructor i";
+        List<Instructor> instructors = jpaApi.em().createQuery(instructorSQL,Instructor.class).getResultList();
+
+        String paymentfrequencySQL = "SELECT p FROM PaymentFrequency p";
+        List<PaymentFrequency> payments = jpaApi.em().createQuery(paymentfrequencySQL,PaymentFrequency.class).getResultList();
+
+        return ok(views.html.newstudent.render(states, instructors, payments));
 
     }
 
@@ -244,6 +266,28 @@ public class StudentController extends Controller
         jpaApi.em().remove(deleteStudent);
 
         return redirect("/liststudents");
+    }
+
+    @Transactional
+    public Result listTechniques()
+    {
+        DynamicForm form = formFactory.form().bindFromRequest();
+
+        String searchTechnique= form.get("searchtechnique");
+
+        if (searchTechnique == null)
+        {
+            searchTechnique = "";
+        }
+
+        searchTechnique += "%";
+
+        String sql = "SELECT t FROM Technique t ORDER BY techniqueId";
+
+        List<Technique> listTechniques = jpaApi.em().createQuery(sql, Technique.class).getResultList();
+
+        return ok(views.html.listtechniques.render(listTechniques));
+
     }
 
 

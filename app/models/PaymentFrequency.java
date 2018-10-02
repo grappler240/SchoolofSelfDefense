@@ -9,11 +9,7 @@ public class PaymentFrequency
     @Id private String paymentFrequencyId;
     private String paymentFrequencyName;
 
-    public PaymentFrequency(String paymentFrequencyId, String paymentFrequencyName)
-    {
-        this.paymentFrequencyId = paymentFrequencyId;
-        this.paymentFrequencyName = paymentFrequencyName;
-    }
+
 
     public String getPaymentFrequencyId()
     {

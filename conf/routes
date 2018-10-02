@@ -19,6 +19,8 @@ GET     /newstudent                 controllers.StudentController.getNewStudent
 POST    /newstudent                 controllers.StudentController.postNewStudent
 POST    /deletestudent/:studentId   controllers.StudentController.deleteStudent(studentId: Integer)
 
+GET     /listtechniques             controllers.StudentController.listTechniques
+
 
 
 
