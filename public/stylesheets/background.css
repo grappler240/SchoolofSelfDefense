@@ -1,0 +1,17 @@
+h1 {
+font-size:75px;
+font-family:"Goudy Old Style";
+font-weight: bold;
+color:#FA3232;
+
+}
+
+h2{
+color:#FA3232;
+}
+
+
+body  {
+    background-image: url("/assets/images/5ANIMALBW2.jpg");
+    background-size: 100%;
+}

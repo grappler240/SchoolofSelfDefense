@@ -6,17 +6,17 @@ import javax.persistence.Id;
 @Entity
 public class PaymentFrequency
 {
-    @Id private String paymentFrequencyId;
+    @Id private int paymentFrequencyId;
     private String paymentFrequencyName;
 
 
 
-    public String getPaymentFrequencyId()
+    public int getPaymentFrequencyId()
     {
         return paymentFrequencyId;
     }
 
-    public void setPaymentFrequencyId(String paymentFrequencyId)
+    public void setPaymentFrequencyId(int paymentFrequencyId)
     {
         this.paymentFrequencyId = paymentFrequencyId;
     }

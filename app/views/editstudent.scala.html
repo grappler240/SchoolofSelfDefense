@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="/assets/lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/stylesheets/background.css">
     <script src="/assets/lib/jquery/jquery.min.js"></script>
     <script src="/assets/lib/bootstrap/js/bootstrap.min.js"></script>
     <meta charset="UTF-8">
@@ -71,13 +72,17 @@
         <label for="paymentfrequencyId" class="text-danger">Payment freq: </label>
         <select name = "paymentfrequencyId"  class="form-control">
             @for(paymentfrequency<-payments) {
-            <option id = "paymentfrequencyId"  value="@paymentfrequency.getPaymentFrequencyId">@paymentfrequency.getPaymentFrequencyName</option>
+            @if(paymentfrequency.getPaymentFrequencyId == student.getPaymentFrequencyId){
+            <option id = "paymentfrequencyId"  value="@paymentfrequency.getPaymentFrequencyId" selected="selected">@paymentfrequency.getPaymentFrequencyName</option>
+            }else{
+            <option value="@paymentfrequency.getPaymentFrequencyId">@paymentfrequency.getPaymentFrequencyName</option>
+            }
             }
         </select><br>
 
         <label for="startdate" class="text-danger ">Start Date:</label><br>
         <input type = "date" class="form-control" id = "startdate" name = "startdate" value = "@student.getStartDate"><br>
-        </select>
+
             </div>
         </div>
         <div class="row">
