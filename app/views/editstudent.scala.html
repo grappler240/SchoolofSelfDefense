@@ -42,7 +42,7 @@
         <input type = "text" class="form-control" id = "phonenumber" name = "phonenumber" value = "@student.getPhoneNumber"><br>
         <label for="beltrank" class="text-danger">Belt Rank: </label>
         <input type = "text" class="form-control" id = "beltrank" name = "beltrank" value = "@student.getBeltRank"><br>
-        <label for="techniqueId" class="text-danger">Technique Id: </label>
+        <label for="techniqueId" class="text-danger">Technique Name: </label>
         <select name = "techniqueId"  class="form-control">
             @for(technique<-techniques) {
             @if(technique.getTechniqueId  == student.getTechniqueId){
@@ -54,11 +54,11 @@
         </select> <br>
             </div>
             <div class="col-4">
-        <label for="contractstatus" class="text-danger">Contract: </label>
+        <label for="contractstatus" class="text-danger">On Contract: </label>
         <input type = "text" class="form-control" id = "contractstatus" name = "contractstatus" value = "@student.isContractStatus"><br>
         <label for="rate" class="text-danger">Rate: </label>
         <input type = "text" class="form-control" id = "rate" name = "rate" value = "@student.getRate"><br>
-        <label for="instructorId" class="text-danger">Instructor Id: </label>
+        <label for="instructorId" class="text-danger">Instructor Name: </label>
         <select name = "instructorId"  class="form-control">
             @for(instructor<-instructors) {
             @if(instructor.getInstructorId == student.getInstructorId){
@@ -69,7 +69,7 @@
             }
         </select> <br>
 
-        <label for="paymentfrequencyId" class="text-danger">Payment freq: </label>
+        <label for="paymentfrequencyId" class="text-danger">Payment frequency: </label>
         <select name = "paymentfrequencyId"  class="form-control">
             @for(paymentfrequency<-payments) {
             @if(paymentfrequency.getPaymentFrequencyId == student.getPaymentFrequencyId){
